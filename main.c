@@ -7,8 +7,8 @@ typedef struct
 	int column;
 } Coordinate;
 
-const static int R = 5;
-const static int C = 5;
+static int R;
+static int C;
 int resCounter = 0;
 
 bool solve(char field[R][C], Coordinate cur,char seen[R][C], Coordinate res[])
@@ -55,23 +55,32 @@ int main(void)
 	{0,0,0,0,0},
 	{0,0,0,0,0},
 	{0,0,0,0,0},
+	{0,0,0,0,0},
 	};
 
 	char field[][5] = {
 	{'#','#','#','S','#'},
 	{'#','#','#','?','?'},
 	{'#','?','?','?','?'},
-	{'#','#','#','#','?'},
-	{'#','#','F','?','?'}
+	{'#','#','#','?','?'},
+	{'#','#','?','?','?'},
+	{'#','#','F','#','#'},
 	};
 	
 	const Coordinate cur = {0, 3};
 	Coordinate res[10];
 
+	int numbRows =sizeof(field)/sizeof(field[0]) ;
+	int numbCols = sizeof(field[0])/sizeof(char);
+	printf("field #rows %d\n", numbRows);
+	printf("field #columns %d\n", numbCols);
+	C = numbCols;
+	R = numbRows;
+
 	printf("field:\n");
-	for (char i = 0; i < 5; i++)
+	for (char i = 0; i < numbRows; i++)
 	{
-		for (char j = 0 ; j < 5; j++)
+		for (char j = 0 ; j < numbCols; j++)
 		{
 			printf("%c", field[i][j]);
 		}
